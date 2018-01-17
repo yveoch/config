@@ -1,0 +1,91 @@
+[user]
+	name = Dryvenn
+	email = dryvenn@gmail.com
+
+[credential]
+	helper = cache --timeout=0
+
+[push]
+	default = simple
+
+[alias]
+	a = "add"
+	aa = "add --all"
+	ai = "add --interactive"
+	ap = "add --patch"
+	b = "branch"
+	c = "commit"
+	ca = "commit --amend"
+	cae = "commit --amend --no-edit"
+	can = "commit --amend --no-verify"
+	caen = "commit --amend --no-edit --no-verify"
+	cm = "commit -m"
+	cn = "commit --no-verify"
+	cnm = "commit --no-verify -m"
+	d = "diff"
+	e = "clean"
+	ef = "clean --force"
+	efd = "clean --force -d"
+	efdx = "clean --force -d -x"
+	f = "fetch"
+	g = "log"
+	go = "log --oneline"
+	gog = "log --oneline --graph --all"
+	h = "stash"
+	ha = "stash apply"
+	hc = "stash clear"
+	hd = "stash drop"
+	hl = "stash list"
+	hp = "stash pop"
+	hw = "stash show"
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+	k = "cherry-pick"
+	ka = "cherry-pick --abort"
+	kc = "cherry-pick --continue"
+	ks = "cherry-pick --skip"
+	l = "pull"
+	lr = "pull --rebase"
+	m = "merge"
+	ma = "merge --abort"
+	mt = "mergetool"
+	n = "rebase"
+	na = "rebase --abort"
+	nc = "rebase --continue"
+	ni = "rebase --interactive"
+	ns = "rebase --skip"
+	o = "checkout"
+	ob = "checkout -b"
+	p = "push"
+	pf = "push --force"
+	r = "reset"
+	rh = "reset --hard"
+	rs = "reset --soft"
+	s = "status"
+	suno = "status -uno"
+	u = "submodule"
+	ua = "submodule add"
+	ud = "submodule deinit"
+	ui = "submodule init"
+	uiu = "submodule update --init"
+	us = "submodule status"
+	uu = "submodule update"
+	w = "show"
+
+[log]
+	decorate = short
+
+[merge]
+	tool = vimdiff
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+
+[color]
+	ui = auto
+	interactive = auto
+
+[include]
+	path = ~/.gitconfig_local
+[pull]
+	rebase = true

@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+set -o errexit
+set -o errtrace
+set -o nounset
+set -o pipefail
+#set -o xtrace
+
+DIR=~/.config
+LINKME="
+Xresources
+bash_profile
+bashrc
+compton.conf
+gitconfig
+gitignore
+gtkrc-2.0
+i3
+i3status.conf
+pythonrc
+tmux
+tmux.conf
+vim
+vimrc
+xonshrc
+"
+
+if ! git -C $DIR remote -v | grep -q "config"
+then
+	rm -fr $DIR
+	git clone --depth 1 --recursive https://github.com/dryvenn/config $DIR
+	cd $DIR
+else
+	cd $DIR
+	stash=$(git stash create -kua)
+	git reset --hard
+	git pull --rebase origin master
+	git submodule update --init
+	[ -n "$stash" ] && git stash apply $stash
+fi
+
+for l in $LINKME
+do
+	ln -svnf $DIR/$l ~/.$l
+done

@@ -1,0 +1,31 @@
+# Theme
+#colorscheme desertex
+colorscheme gruvbox
+hook global WinCreate .* %{addhl show_matching}
+hook global WinCreate .* %{addhl number_lines}
+
+# UI
+set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
+
+# Git file finder
+def gitf -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
+
+# Search highlighting
+set global incsearch true
+face search +bi
+hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
+  addhl dynregex '%reg{/}' 0:search
+}}
+hook global NormalKey <esc> %{ try %{
+  rmhl dynregex_%reg{<slash>}
+}}
+
+# Clipboard integration
+map global user P '!xsel --output --clipboard<ret>'
+map global user p '<a-!>xsel --output --clipboard<ret>'
+hook global NormalKey y|d|c %{ nop %sh{
+  printf %s "$kak_reg_dquote" | xsel --input --clipboard
+}}
+
+# Keybinding
+map global normal <c-f> ':fzf %sh{pwd}<ret>'

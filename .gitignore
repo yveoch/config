@@ -1,0 +1,4 @@
+vim/plugged
+fzf
+tmux/*
+!tmux/plugins/tpm
