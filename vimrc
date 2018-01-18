@@ -104,7 +104,7 @@ set t_vb=
 " hide mouse while typing
 set mousehide
 " use mouse
-set mouse=a
+"set mouse=a
 " ignore files
 set wildignore+=*.o
 set wildignore+=**/env/**
