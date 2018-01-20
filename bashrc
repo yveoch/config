@@ -159,4 +159,4 @@ if [ -d ~/.config/bash ]; then
 fi
 
 # LOCAL
-[ -f ~/.bashrc_local ] && source ~/.bashrc_local
+[ -f ~/.bashrc_local ] && source ~/.bashrc_local || true
