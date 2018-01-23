@@ -43,3 +43,8 @@ for l in $LINKME
 do
 	ln -svnf $DIR/$l ~/.$l
 done
+
+echo "Installing vim plugins..."
+vim +PlugInstall +qall &> /dev/null
+
+echo "Done."

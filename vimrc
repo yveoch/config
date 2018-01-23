@@ -41,7 +41,7 @@ call plug#end()
 " a cool theme
 syntax enable
 set background=dark
-colorscheme zenburn
+silent! colorscheme zenburn
 
 " GENERAL SETTINGS
 " use vim, not vi
