@@ -25,7 +25,7 @@ vimrc
 xonshrc
 "
 
-if ! git -C $DIR remote -v | grep -q "config"
+if ! git -C $DIR remote -v 2>/dev/null | grep -q "config"
 then
 	rm -fr $DIR
 	git clone --depth 1 --recursive https://github.com/dryvenn/config $DIR
