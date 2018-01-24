@@ -1,3 +1,7 @@
 $PROMPT_FIELDS['arrow'] = lambda: ("{GREEN}" if not __xonsh_history__.rtns or __xonsh_history__.rtns[-1] == 0 else "{RED}") + ">{NO_COLOR}"
 $PROMPT_FIELDS['git'] = lambda: "on {YELLOW}" + $PROMPT_FIELDS['curr_branch']() + "{NO_COLOR}" if $PROMPT_FIELDS['curr_branch']() else ""
 $PROMPT = "{CYAN}{user}{NO_COLOR} at {PURPLE}{hostname}{NO_COLOR} in {BLUE}{cwd}{NO_COLOR} {git}\n{arrow} "
+
+aliases['l'] = 'ls --lah'
+aliases['ls'] = 'ls --color=auto'
+aliases['grep'] = 'grep --color=auto'
