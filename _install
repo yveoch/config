@@ -39,4 +39,9 @@ done
 echo "Installing vim plugins..."
 vim +PlugInstall +qall &> /dev/null
 
+echo "Compiling kakoune..."
+make -C $DIR/kak/kakoune/src > /dev/null
+mkdir -p ~/.local/bin
+ln -snf $DIR/kak/kakoune/src/kak ~/.local/bin/kak
+
 echo "Done."
