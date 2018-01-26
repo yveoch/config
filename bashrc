@@ -15,15 +15,13 @@ __prompt_command() {
 		arrow="\[\e[32m\]$arrow"
 	fi
 
-	if [ ! "$PROMPT_NO_GIT" ]; then
-		GIT_PS1_SHOWDIRTYSTATE=true
-		GIT_PS1_SHOWSTASHSTATE=true
-		#GIT_PS1_SHOWUNTRACKEDFILES=true
-		GIT_PS1_SHOWUPSTREAM="auto"
-		GIT_PS1_DESCRIBE_STYLE="branch"
-		#GIT_PS1_SHOWCOLORHINTS=true
-		git=$(__git_ps1 "on \[\e[33m\]%s\[\e[m\]" 2> /dev/null)
-	fi
+	GIT_PS1_SHOWDIRTYSTATE=true
+	GIT_PS1_SHOWSTASHSTATE=true
+	GIT_PS1_SHOWUNTRACKEDFILES=true
+	GIT_PS1_SHOWUPSTREAM="auto"
+	GIT_PS1_DESCRIBE_STYLE="branch"
+	GIT_PS1_SHOWCOLORHINTS=true
+	git=$(__git_ps1 "on \[\e[33m\]%s\[\e[m\]" 2> /dev/null)
 
 	PS1="\[\e[36m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[34m\]\w\[\e[m\] $git\n$arrow "
 }

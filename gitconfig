@@ -38,7 +38,6 @@
 	hl = "stash list"
 	hp = "stash pop"
 	hw = "stash show"
-	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 	k = "cherry-pick"
 	ka = "cherry-pick --abort"
 	kc = "cherry-pick --continue"
@@ -70,6 +69,9 @@
 	us = "submodule status"
 	uu = "submodule update"
 	w = "show"
+
+	ignore = "!f() { curl -L -s https://www.gitignore.io/api/$@; }; f"
+	fastps1 = "!f() { git config bash.showDirtyState false; git config bash.showUntrackedFiles false; }; f"
 
 [log]
 	decorate = short
