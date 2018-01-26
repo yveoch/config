@@ -1,6 +1,5 @@
 # Theme
-#colorscheme desertex
-colorscheme gruvbox
+colorscheme zenburn
 hook global WinCreate .* %{addhl show_matching}
 hook global WinCreate .* %{addhl number_lines}
 
@@ -28,4 +27,28 @@ hook global NormalKey y|d|c %{ nop %sh{
 }}
 
 # Keybinding
-map global normal <c-f> ':fzf %sh{pwd}<ret>'
+def -docstring 'invoke fzf to open a file' \
+  fzf-file %{ %sh{
+    if [ -z "$TMUX" ]; then
+      echo echo only works inside tmux
+    else
+      FILE=$(find * -type f | fzf-tmux -d 15)
+      if [ -n "$FILE" ]; then
+        printf 'eval -client %%{%s} edit %%{%s}\n' "${kak_client}" "${FILE}" | kak -p "${kak_session}"
+      fi
+    fi
+} }
+map global normal <c-f> ':fzf-file<ret>'
+
+def -docstring 'invoke fzf to select a buffer' \
+  fzf-buffer %{ %sh{
+    if [ -z "$TMUX" ]; then
+      echo echo only works inside tmux
+    else
+      BUFFER=$(printf %s\\n "${kak_buflist}" | tr : '\n' | fzf-tmux -d 15)
+      if [ -n "$BUFFER" ]; then
+        echo "eval -client '$kak_client' 'buffer ${BUFFER}'" | kak -p ${kak_session}
+      fi
+    fi
+} }
+map global normal <c-b> ':fzf-buffer<ret>'
