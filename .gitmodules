@@ -4,9 +4,6 @@
 [submodule "bash/fz"]
 	path = bash/fz
 	url = https://github.com/changyuheng/fz
-[submodule "kak/extra"]
-	path = kak/extra
-	url = https://github.com/lenormf/kakoune-extra
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
