@@ -126,16 +126,12 @@ fi
 # KAKOUNE
 # Automatic session naming
 kk() {
-	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || true)
-	if [ -z "$base_dir" ]; then
-		kak "$@"
+	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
+	local project=$(basename $base_dir)
+	if kak -l | grep -q $project; then
+		kak -c $project "$@"
 	else
-		local project=$(basename $base_dir)
-		if kak -l | grep -q $project; then
-			kak -c $project "$@"
-		else
-			kak -s $project "$@"
-		fi
+		kak -s $project "$@"
 	fi
 }
 
