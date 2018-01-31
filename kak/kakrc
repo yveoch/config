@@ -6,9 +6,6 @@ hook global WinCreate .* %{addhl number_lines}
 # UI
 set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
 
-# Git file finder
-def gitf -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
-
 # Search highlighting
 set global incsearch true
 face search +bi
@@ -26,7 +23,10 @@ hook global NormalKey y|d|c %{ nop %sh{
   printf %s "$kak_reg_dquote" | xsel --input --clipboard
 }}
 
-# Keybinding
+# Git file finder
+def gitf -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
+
+# FZF file finder
 def -docstring 'invoke fzf to open a file' \
   fzf-file %{ %sh{
     if [ -z "$TMUX" ]; then
@@ -40,6 +40,7 @@ def -docstring 'invoke fzf to open a file' \
 } }
 map global normal <c-f> ':fzf-file<ret>'
 
+# FZF buffer finder
 def -docstring 'invoke fzf to select a buffer' \
   fzf-buffer %{ %sh{
     if [ -z "$TMUX" ]; then
