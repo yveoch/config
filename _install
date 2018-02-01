@@ -44,7 +44,7 @@ echo "Installing tmux plugins..."
 ~/.tmux/plugins/tpm/bin/update_plugins all &> /dev/null
 
 echo "Compiling kakoune..."
-make -C $DIR/kak/kakoune/src &> /dev/null
+make -j $(nproc) -C $DIR/kak/kakoune/src &> /dev/null
 mkdir -p ~/.local/bin
 ln -snf $DIR/kak/kakoune/src/kak ~/.local/bin/kak
 
