@@ -1,7 +1,7 @@
 # Theme
 colorscheme zenburn
-hook global WinCreate .* %{addhl show_matching}
-hook global WinCreate .* %{addhl number_lines}
+addhl global/ number_lines
+addhl global/ show_matching
 
 # UI
 set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
