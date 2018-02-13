@@ -17,6 +17,12 @@ hook global NormalKey <esc> %{ try %{
   rmhl dynregex_%reg{<slash>}
 }}
 
+# Case-insensitive search
+map -docstring 'Case-insensitive search' global user '/' /(?i)
+map -docstring 'Case-insensitive backward search' global user '<a-/>' <a-/>(?i)
+map -docstring 'Case-insensitive extend search' global user '?' ?(?i)
+map -docstring 'Case-insensitive backward extend-search' global user '<a-?>' <a-?>(?i)
+
 # Clipboard integration
 map global user P '!xsel --output --clipboard<ret>'
 map global user p '<a-!>xsel --output --clipboard<ret>'
