@@ -2,6 +2,7 @@
 colorscheme zenburn
 addhl global/ number_lines
 addhl global/ show_matching
+addhl global/ show_whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
 
 # UI
 set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
