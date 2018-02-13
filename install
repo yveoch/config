@@ -25,6 +25,8 @@ vimrc
 xonshrc
 "
 
+cd $DIR
+
 # Get latest changes from Git
 stash=$(git stash create -kua)
 git reset --hard
