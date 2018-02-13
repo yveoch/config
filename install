@@ -25,12 +25,17 @@ vimrc
 xonshrc
 "
 
-git-create-update() {
-	curl https://raw.githubusercontent.com/dryvenn/scripts/master/git-create-update | bash -s $@
-}
+# Get latest changes from Git
+stash=$(git stash create -kua)
+git reset --hard
+git pull --rebase origin master
+git submodule update --init
+if [ -n "$stash" ]
+then
+	git stash apply $stash
+fi
 
-git-create-update $DIR https://github.com/dryvenn/config
-
+# Link dotfiles
 for l in $LINKME
 do
 	ln -svnf $DIR/$l ~/.$l

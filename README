@@ -1,1 +1,1 @@
-curl https://raw.githubusercontent.com/dryvenn/config/master/_install | bash
+git clone --recursive --depth=1 https://github.com/dryvenn/config .config && ./.config/install
