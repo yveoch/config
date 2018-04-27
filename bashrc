@@ -140,8 +140,8 @@ alias tmuxa="tmux attach"
 alias tmuxd="tmux detach"
 # Attach if exists else create
 tt() {
-	if ! tmux attach &> /dev/null; then
-		tmux
+	if ! tmux attach $@ &> /dev/null; then
+		tmux $@
 	fi
 }
 
