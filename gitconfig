@@ -88,6 +88,9 @@
 	ui = auto
 	interactive = auto
 
+[interactive]
+	singleKey = true
+
 [include]
 	path = ~/.gitconfig_local
 [pull]
