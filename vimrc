@@ -178,6 +178,8 @@ endfor
 set tags=./tags;
 " line wraping
 set textwidth=80
+" highlight at 80
+let &colorcolumn="81"
 
 " PLUGIN SETTINGS
 " Lightline
