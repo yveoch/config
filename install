@@ -6,26 +6,7 @@ set -o nounset
 set -o pipefail
 #set -o xtrace
 
-DIR=~/.config
-LINKME="
-Xresources
-bash_profile
-bashrc
-compton.conf
-gitconfig
-gitignore
-gtkrc-2.0
-i3
-i3status.conf
-pythonrc
-tmux
-tmux.conf
-vim
-vimrc
-xonshrc
-"
-
-cd $DIR
+cd $(dirname $(readlink -f $0))
 
 # Get latest changes from Git
 stash=$(git stash create -kua)
@@ -38,9 +19,9 @@ then
 fi
 
 # Link dotfiles
-for l in $LINKME
+for l in $(find $PWD/.homepoline -mindepth 1)
 do
-	ln -svnf $DIR/$l ~/.$l
+	ln -svnf $l ~/.$(basename $l)
 done
 
 echo "Installing vim plugins..."
@@ -54,8 +35,8 @@ echo "Installing fzf..."
 ~/.config/fzf/install --all &> /dev/null
 
 echo "Compiling kakoune..."
-make -j $(nproc) -C $DIR/kak/kakoune/src &> /dev/null
+make -j $(nproc) -C kak/kakoune/src &> /dev/null
 mkdir -p ~/.local/bin
-ln -snf $DIR/kak/kakoune/src/kak ~/.local/bin/kak
+ln -snf $PWD/kak/kakoune/src/kak ~/.local/bin/kak
 
 echo "Done."
