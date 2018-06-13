@@ -3,7 +3,6 @@ colorscheme zenburn
 addhl global/ number_lines
 addhl global/ show_matching
 addhl global/ show_whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
-addhl global/ dynregex "[^\S\n]+$" 0:black,red
 
 # UI
 set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
@@ -61,3 +60,11 @@ def -docstring 'invoke fzf to select a buffer' \
     fi
 } }
 map global normal <c-b> ':fzf-buffer<ret>'
+
+# Show trailing whitespaces
+addhl global/ dynregex "[^\S\n]+$" 0:black,red
+# Strip trailing whitespaces
+def -docstring 'strip trailing whitespaces' \
+  strip-tws %{
+    exec -draft %{ %s[^\S\n]+$<ret>d }
+}
