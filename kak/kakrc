@@ -68,3 +68,6 @@ def -docstring 'strip trailing whitespaces' \
   strip-tws %{
     exec -draft %{ %s[^\S\n]+$<ret>d }
 }
+
+# Wrap at 80
+hook global WinCreate .* %{ autowrap-enable }
