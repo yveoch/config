@@ -10,3 +10,6 @@
 [submodule "kak/kakoune"]
 	path = kak/kakoune
 	url = https://github.com/mawww/kakoune
+[submodule "kak/autoload/cscope"]
+	path = kak/autoload/cscope
+	url = https://github.com/dryvenn/kakoune-cscope
