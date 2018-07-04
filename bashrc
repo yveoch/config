@@ -140,9 +140,12 @@ k() {
 alias tmuxa="tmux attach"
 alias tmuxd="tmux detach"
 # Attach if exists else create
-tt() {
-	if ! tmux attach $@ &> /dev/null; then
+t() {
+	if ! tmux ls &> /dev/null
+	then
 		tmux $@
+	else
+		tmux attach -t ${1:-$(tmux ls | head -n 1 | cut -d ':' -f 1)}
 	fi
 }
 
