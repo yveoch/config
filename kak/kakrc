@@ -5,17 +5,12 @@ addhl global/ show_matching
 addhl global/ show_whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
 
 # UI
-set-option global ui_options "ncurses_assistant=off:ncurses_set_title=true:ncurses_enable_mouse=false"
+set-option -add global ui_options "ncurses_assistant=off"
+set-option -add global ui_options "ncurses_set_title=true"
+set-option -add global ui_options "ncurses_enable_mouse=false"
 
 # Search highlighting
 set global incsearch true
-face search +bi
-hook global NormalKey [/?*nN]|<a-[/?*nN]> %{ try %{
-  addhl dynregex '%reg{/}' 0:search
-}}
-hook global NormalKey <esc> %{ try %{
-  rmhl dynregex_%reg{<slash>}
-}}
 
 # Case-insensitive search
 map -docstring 'Case-insensitive search' global user '/' /(?i)
@@ -23,51 +18,56 @@ map -docstring 'Case-insensitive backward search' global user '<a-/>' <a-/>(?i)
 map -docstring 'Case-insensitive extend search' global user '?' ?(?i)
 map -docstring 'Case-insensitive backward extend-search' global user '<a-?>' <a-?>(?i)
 
-# Clipboard integration
-map global user P '!xsel --output --clipboard<ret>'
-map global user p '<a-!>xsel --output --clipboard<ret>'
-hook global NormalKey y|d|c %{ nop %sh{
-  printf %s "$kak_reg_dquote" | xsel --input --clipboard
-}}
 
 # Git file finder
-def gitf -params 1 -shell-candidates %{ git ls-files } %{ edit %arg{1} }
+define-command -docstring 'gitf <pattern>: git file finder' \
+    -params 1 \
+    -shell-candidates %{ git ls-files } \
+    gitf %{
+        edit %arg{1}
+    }
 
 # FZF file finder
-def -docstring 'invoke fzf to open a file' \
-  fzf-file %{ %sh{
-    if [ -z "$TMUX" ]; then
-      echo echo only works inside tmux
-    else
-      FILE=$(find * -type f | fzf-tmux -d 15)
-      if [ -n "$FILE" ]; then
-        printf 'eval -client %%{%s} edit %%{%s}\n' "${kak_client}" "${FILE}" | kak -p "${kak_session}"
-      fi
-    fi
-} }
+define-command -docstring 'fzf: FZF file invocation' \
+    -params 0 \
+    fzf-file %{ evaluate-commands %sh{
+        if [ -z "$TMUX" ]; then
+            echo "echo -markup \"{Error}Only works inside tmux\""
+            exit
+        fi
+        f=$(find * -type f | fzf-tmux -d 20%)
+        if [ -n "$f" ]
+        then
+            printf 'edit! %%{%s}\n' $f
+        fi
+    }}
 map global normal <c-f> ':fzf-file<ret>'
 
 # FZF buffer finder
-def -docstring 'invoke fzf to select a buffer' \
-  fzf-buffer %{ %sh{
-    if [ -z "$TMUX" ]; then
-      echo echo only works inside tmux
-    else
-      BUFFER=$(printf %s\\n "${kak_buflist}" | tr : '\n' | fzf-tmux -d 15)
-      if [ -n "$BUFFER" ]; then
-        echo "eval -client '$kak_client' 'buffer ${BUFFER}'" | kak -p ${kak_session}
-      fi
-    fi
-} }
+define-command -docstring 'fzf: FZF buffer invocation' \
+    -params 0 \
+    fzf-buffer %{ evaluate-commands %sh{
+        if [ -z "$TMUX" ]; then
+            echo "echo -markup \"{Error}Only works inside tmux\""
+            exit
+        fi
+        b=$(echo "$kak_buflist" | tr ' ' '\n' | fzf-tmux -d 20%)
+        if [ -n "$b" ]
+        then
+            printf 'buffer %s\n' $b
+        fi
+    }}
 map global normal <c-b> ':fzf-buffer<ret>'
 
 # Show trailing whitespaces
 addhl global/ dynregex "[^\S\n]+$" 0:black,red
+
 # Strip trailing whitespaces
-def -docstring 'strip trailing whitespaces' \
-  strip-tws %{
-    exec -draft %{ %s[^\S\n]+$<ret>d }
-}
+define-command -docstring 'strip-tws: strip trailing whitespaces' \
+    -params 0 \
+    strip-tws %{
+        exec -draft %{ %s[^\S\n]+$<ret>d }
+    }
 
 # Wrap at 80
 hook global WinCreate .* %{ autowrap-enable }
