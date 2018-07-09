@@ -93,3 +93,7 @@ map -docstring 'Find assignments to this symbol'        global user 'a' '<a-i>w:
 # Search with Ag
 set-option global grepcmd 'ag --vimgrep'
 map global normal <c-k> '<a-i>w:grep <c-r>.<ret>'
+
+# Indent when tab is pressed
+map global insert <tab> '<a-;><gt>'
+map global insert <s-tab> '<a-;><lt>'
