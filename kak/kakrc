@@ -14,9 +14,9 @@ set global incsearch true
 
 # Case-insensitive search
 map -docstring 'Case-insensitive search' global user '/' /(?i)
-map -docstring 'Case-insensitive backward search' global user '<a-/>' <a-/>(?i)
-map -docstring 'Case-insensitive extend search' global user '?' ?(?i)
-map -docstring 'Case-insensitive backward extend-search' global user '<a-?>' <a-?>(?i)
+map -docstring 'Case-insensitive reverse search' global user '<a-/>' <a-/>(?i)
+map -docstring 'Case-insensitive search (extend)' global user '?' ?(?i)
+map -docstring 'Case-insensitive reverse search (extend)' global user '<a-?>' <a-?>(?i)
 
 
 # Git file finder
