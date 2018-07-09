@@ -18,6 +18,13 @@ map -docstring 'Case-insensitive reverse search' global user '<a-/>' <a-/>(?i)
 map -docstring 'Case-insensitive search (extend)' global user '?' ?(?i)
 map -docstring 'Case-insensitive reverse search (extend)' global user '<a-?>' <a-?>(?i)
 
+# Simple file finder
+define-command -docstring 'find <file>: find a file' \
+    -params 1 \
+    -shell-candidates %{ find . -type f } \
+    find %{
+        edit %arg{1}
+    }
 
 # Git file finder
 define-command -docstring 'gitf <pattern>: git file finder' \
