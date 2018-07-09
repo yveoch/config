@@ -51,7 +51,7 @@ define-command -docstring 'fzf: FZF buffer invocation' \
             echo "echo -markup \"{Error}Only works inside tmux\""
             exit
         fi
-        b=$(echo "$kak_buflist" | tr ' ' '\n' | fzf-tmux -d 20%)
+        b=$(echo "$kak_buflist" | tr ' ' '\n' | tr -d "'" | fzf-tmux -d 20%)
         if [ -n "$b" ]
         then
             printf 'buffer %s\n' $b
