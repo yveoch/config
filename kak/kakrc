@@ -83,13 +83,6 @@ map -docstring 'Find this file'                         global user 'f' '<a-i>w:
 map -docstring 'Find files #including this file'        global user 'i' '<a-i>w:cscope 8 <c-r>.<ret>'
 map -docstring 'Find assignments to this symbol'        global user 'a' '<a-i>w:cscope 9 <c-r>.<ret>'
 
-# Auto-grep
-set-option global grepcmd %sh{
-    if which ag &> /dev/null
-    then
-        echo 'ag --vimgrep'
-    else
-        echo $kak_opt_grepcmd
-    fi
-}
+# Search with Ag
+set-option global grepcmd 'ag --vimgrep'
 map global normal <c-k> '<a-i>w:grep <c-r>.<ret>'
