@@ -128,7 +128,7 @@ fi
 # Automatic session naming
 k() {
 	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
-	local project=$(basename $base_dir)
+	local project=$(basename $base_dir | tr -d '.')
 	if kak -l | grep -q $project; then
 		kak -c $project "$@"
 	else
