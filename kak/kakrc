@@ -21,7 +21,7 @@ map -docstring 'Case-insensitive reverse search (extend)' global user '<a-?>' <a
 # Simple file finder
 define-command -docstring 'find <file>: find a file' \
     -params 1 \
-    -shell-candidates %{ find . -type f } \
+    -shell-candidates %{ find * -type f } \
     find %{
         edit %arg{1}
     }
