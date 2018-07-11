@@ -1,8 +1,8 @@
 # Theme
 colorscheme zenburn
-addhl global/ number_lines
-addhl global/ show_matching
-addhl global/ show_whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
+addhl global/ number-lines
+addhl global/ show-matching
+addhl global/ show-whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
 
 # UI
 set-option -add global ui_options "ncurses_assistant=off"
