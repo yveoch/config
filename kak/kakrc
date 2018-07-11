@@ -45,7 +45,7 @@ define-command -docstring 'fzf: FZF file invocation' \
         f=$(find * -type f | fzf-tmux -d 20%)
         if [ -n "$f" ]
         then
-            printf 'edit! %%{%s}\n' $f
+            printf 'edit %%{%s}\n' $f
         fi
     }}
 map global normal <c-f> ':fzf-file<ret>'
