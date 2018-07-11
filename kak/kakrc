@@ -97,3 +97,6 @@ map global normal <c-k> '<a-i>w:grep <c-r>.<ret>'
 # Indent when tab is pressed
 map global insert <tab> '<a-;><gt>'
 map global insert <s-tab> '<a-;><lt>'
+
+# Fold selection
+map -docstring 'Fold selection at 80 columns' global user 'w' '|fold -s | sed "s/\s*$//"<ret>gh'
