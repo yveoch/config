@@ -25,6 +25,7 @@ define-command -docstring 'find <file>: find a file' \
     find %{
         edit %arg{1}
     }
+alias global f find
 
 # Git file finder
 define-command -docstring 'gitf <pattern>: git file finder' \
