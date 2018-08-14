@@ -2,6 +2,7 @@
 colorscheme zenburn
 addhl global/ show-matching
 addhl global/ number-lines -hlcursor
+addhl global/ wrap -word -marker "…"
 addhl global/ show-whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
 
 # UI
