@@ -1,7 +1,7 @@
 # Theme
 colorscheme zenburn
-addhl global/ number-lines
 addhl global/ show-matching
+addhl global/ number-lines -hlcursor
 addhl global/ show-whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
 
 # UI
