@@ -109,3 +109,6 @@ hook global InsertCompletionHide .* %{
     unmap window insert <tab> <c-n>
     unmap window insert <s-tab> <c-p>
 }
+
+# Enable LSP if it is available
+evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
