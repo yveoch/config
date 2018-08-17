@@ -100,6 +100,11 @@ hook global WinSetOption filetype=go %{
     set-option window indentwidth 0
 }
 
+# Shell is indented with tabs
+hook global WinSetOption filetype=sh %{
+    set-option window indentwidth 0
+}
+
 # Tab cycles through completions
 hook global InsertCompletionShow .* %{
     map window insert <tab> <c-n>
