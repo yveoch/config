@@ -113,5 +113,5 @@ hook global InsertCompletionHide .* %{
 # Enable LSP if it is available
 evaluate-commands %sh{
     kak-lsp --kakoune -s $kak_session
-    echo map global view i '<esc>:lsp-hover<ret>' -docstring 'display info'
+    echo map global view i "<esc>:lsp-hover<ret>" -docstring "\"display info\""
 }
