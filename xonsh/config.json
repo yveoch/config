@@ -1,7 +1,0 @@
-{
- "xontribs": [
-  "apt_tabcomplete",
-  "autoxsh",
-  "docker_tabcomplete"
- ]
-}

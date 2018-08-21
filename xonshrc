@@ -1,7 +1,70 @@
-$PROMPT_FIELDS['arrow'] = lambda: ("{GREEN}" if not __xonsh_history__.rtns or __xonsh_history__.rtns[-1] == 0 else "{RED}") + ">{NO_COLOR}"
-$PROMPT_FIELDS['git'] = lambda: "on {YELLOW}" + $PROMPT_FIELDS['curr_branch']() + "{NO_COLOR}" if $PROMPT_FIELDS['curr_branch']() else ""
-$PROMPT = "{CYAN}{user}{NO_COLOR} at {PURPLE}{hostname}{NO_COLOR} in {BLUE}{cwd}{NO_COLOR} {git}\n{arrow} "
+# Prompt
+$PROMPT_FIELDS['u'] = '{BLUE}' + $PROMPT_FIELDS['user'] + '{NO_COLOR}'
+$PROMPT_FIELDS['h'] = '{PURPLE}' + $PROMPT_FIELDS['hostname'] + '{NO_COLOR}'
+$PROMPT_FIELDS['c'] = '{YELLOW}' + $PROMPT_FIELDS['cwd']() + '{NO_COLOR}'
+$PROMPT_FIELDS['g'] = ' on ' + $PROMPT_FIELDS['gitstatus']() if $PROMPT_FIELDS['curr_branch']() else ''
+$PROMPT_FIELDS['p'] = lambda: ('{BOLD_INTENSE_GREEN}' if not __xonsh_history__.rtns or\
+                                __xonsh_history__.rtns[-1] == 0 else "{BOLD_INTENSE_RED}") +\
+                        $PROMPT_FIELDS['prompt_end'] + '{NO_COLOR}'
+$PROMPT = '{u} at {h} in {c}{g}\n{p} '
 
+# Aliases
 aliases['l'] = 'ls --lah'
 aliases['ls'] = 'ls --color=auto'
+aliases['ip'] = 'ip -c'
 aliases['grep'] = 'grep --color=auto'
+aliases['path'] = 'readlink -e'
+aliases['make'] = 'make -j' + $(nproc)
+
+# Exports
+$EDITOR = 'vim'
+$PATH += [
+            '~/.local/bin',
+            '/usr/local/sbin',
+            '/usr/local/bin',
+            '/usr/sbin',
+            '/usr/bin',
+            '/sbin',
+            '/bin',
+            '~/.scripts',
+         ]
+
+# Kakoune
+def _k(*args):
+    from pathlib import Path
+    base_dir = $(git rev-parse --show-toplevel err> /dev/null) or $(pwd)
+    project = Path(base_dir).stem.strip().replace('.', '')
+    for session in $(kak -l).strip().split('\n'):
+        if session == project:
+            opt = '-c'
+            break
+    else:
+        opt = '-s'
+    @(['kak', opt, project, *args])
+aliases['k'] = _k
+
+# Tmux
+def _t(*args):
+    cmd = ['tmux']
+    try:
+        tmux_ls = $(tmux ls)
+    except XonshCalledProcessError:
+        tmux_ls = None
+    if tmux_ls:
+        if len(args) != 0:
+            name = args[0]
+            args = args[1:]
+        else:
+            name = tmux_ls.split('\n')[0].split(':')[0]
+        cmd += ['attach', '-t', name]
+    cmd += args
+    @(cmd)
+aliases['t'] = _t
+
+# Greeting
+type fortune &> /dev/null && fortune
+
+# Local
+execx($(cat ~/.xonshrc_local))
+
+echo "see xontrib in xonfig"
