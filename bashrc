@@ -21,9 +21,9 @@ __prompt_command() {
 	GIT_PS1_SHOWUPSTREAM="auto"
 	GIT_PS1_DESCRIBE_STYLE="branch"
 	GIT_PS1_SHOWCOLORHINTS=true
-	git=$(__git_ps1 "on \[\e[33m\]%s\[\e[m\]" 2> /dev/null)
+	git=$(__git_ps1 "on \[\e[36m\]%s\[\e[m\]" 2> /dev/null)
 
-	PS1="\[\e[36m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[34m\]\w\[\e[m\] $git\n$arrow "
+	PS1="\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git\n$arrow "
 }
 # Header
 [[ $- == *i* ]] && type fortune &> /dev/null && fortune -s
