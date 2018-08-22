@@ -6,7 +6,7 @@ mkdir -p $NOTES
 
 nt() {
 	local extension=".md"
-	local notes=$(find $NOTES -name "*$extension" -exec basename {} \; | sed "s/$extension$//" | sort)
+	local notes=$(find $NOTES/ -name "*$extension" -exec basename {} \; | sed "s/$extension$//" | sort)
 
 	if [ $# == 0 ]; then
 		echo "$notes"
