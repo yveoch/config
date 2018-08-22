@@ -26,7 +26,7 @@ __prompt_command() {
 	PS1="\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git\n$arrow "
 }
 # Header
-[[ $- == *i* ]] && type fortune &> /dev/null && fortune -s
+[[ $- == *i* ]] && type fortune &> /dev/null && fortune
 
 # GENERAL SETTINGS
 # Prevent file overwrite when redirecting
