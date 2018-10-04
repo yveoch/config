@@ -1,8 +1,8 @@
 # Prompt
 $PROMPT_FIELDS['u'] = '{BLUE}' + $PROMPT_FIELDS['user'] + '{NO_COLOR}'
 $PROMPT_FIELDS['h'] = '{PURPLE}' + $PROMPT_FIELDS['hostname'] + '{NO_COLOR}'
-$PROMPT_FIELDS['c'] = '{YELLOW}' + $PROMPT_FIELDS['cwd']() + '{NO_COLOR}'
-$PROMPT_FIELDS['g'] = ' on ' + $PROMPT_FIELDS['gitstatus']() if $PROMPT_FIELDS['curr_branch']() else ''
+$PROMPT_FIELDS['c'] = lambda: '{YELLOW}' + $PROMPT_FIELDS['cwd']() + '{NO_COLOR}'
+$PROMPT_FIELDS['g'] = lambda: ' on ' + $PROMPT_FIELDS['gitstatus']() if $PROMPT_FIELDS['curr_branch']() else ''
 $PROMPT_FIELDS['p'] = lambda: ('{BOLD_INTENSE_GREEN}' if not __xonsh_history__.rtns or\
                                 __xonsh_history__.rtns[-1] == 0 else "{BOLD_INTENSE_RED}") +\
                         $PROMPT_FIELDS['prompt_end'] + '{NO_COLOR}'
@@ -67,4 +67,13 @@ type fortune &> /dev/null && fortune
 # Local
 execx($(cat ~/.xonshrc_local))
 
-echo "see xontrib in xonfig"
+# Xontribs
+xontrib load apt_tabcomplete
+xontrib load autoxsh
+xontrib load coreutils
+xontrib load docker_tabcomplete
+xontrib load fzf-widgets
+xontrib load vox
+xontrib load vox_tabcomplete
+xontrib load avox
+xontrib load z
