@@ -149,6 +149,11 @@ t() {
 	fi
 }
 
+# GODOC
+godoc() {
+	$(which godoc) $@ | less -FRX
+}
+
 # PLUGINS
 if [ -d ~/.config/bash ]; then
 	source ~/.config/bash/z/z.sh
