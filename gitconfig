@@ -93,5 +93,9 @@
 
 [include]
 	path = ~/.gitconfig_local
+
 [pull]
 	rebase = true
+
+[rerere]
+	enabled = true
