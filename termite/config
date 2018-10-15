@@ -1,5 +1,5 @@
 [options]
-font = Source Code Pro 11
+font = Hack 14
 allow_bold = true
 audible_bell = true
 clickable_url = true

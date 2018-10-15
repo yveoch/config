@@ -9,7 +9,7 @@
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-font pango:Source Code Pro 8
+font pango:Hack 10
 
 # set general behavior commands
 set $mod Mod4
