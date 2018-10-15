@@ -87,19 +87,6 @@ shopt -s cdspell 2> /dev/null
 # cd into environment variables
 shopt -s cdable_vars
 
-# ALIASES
-alias tcb="xclip -i -selection clipboard"
-alias l="ls -lah"
-alias v="vim"
-alias path="readlink -f"
-alias rlwrap="rlwrap -c -i -m -r -R -s 50000"
-alias menuconfig="make MENUCONFIG_COLOR=blackbg menuconfig"
-alias ls="ls --color=auto"
-alias dir="dir --color=auto"
-alias grep="grep --color=auto"
-alias ip="ip -c"
-alias yaourt="yaourt --noconfirm"
-
 # EXPORTS
 export HOME=~
 export PATH=$HOME/.scripts:$HOME/.local/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -109,6 +96,20 @@ export TERM=screen-256color
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8 &> /dev/null
 export PYTHONSTARTUP=~/.pythonrc
+
+# ALIASES
+alias tcb="xclip -i -selection clipboard"
+alias l="ls -lah"
+alias path="readlink -f"
+alias rlwrap="rlwrap -c -i -m -r -R -s 50000"
+alias menuconfig="make MENUCONFIG_COLOR=blackbg menuconfig"
+alias ls="ls --color=auto"
+alias dir="dir --color=auto"
+alias grep="grep --color=auto"
+alias ip="ip -c"
+alias yaourt="yaourt --noconfirm"
+alias e="$EDITOR"
+
 
 # FZF
 if source ~/.fzf.bash &> /dev/null; then
