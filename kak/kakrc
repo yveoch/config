@@ -120,3 +120,6 @@ evaluate-commands %sh{
     kak-lsp --kakoune -s $kak_session
     echo map global view i "<esc>:lsp-hover<ret>" -docstring "\"display info\""
 }
+
+# Open directories directly
+ranger-open-on-edit-directory
