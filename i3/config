@@ -247,6 +247,7 @@ mode "$mode_gaps_outer" {
 gaps inner 25
 
 # start apps
+exec --no-startup-id xflux -l 48.8566 -g 2.3522 -k 3000
 exec --no-startup-id compton
 exec --no-startup-id ~/.fehbg
 
