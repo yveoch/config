@@ -103,8 +103,8 @@ alias yaourt="yaourt --noconfirm"
 # EXPORTS
 export HOME=~
 export PATH=$HOME/.scripts:$HOME/.local/bin:/usr/games:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-export EDITOR=vi
-export VISUAL=vim
+export EDITOR=kak
+export VISUAL=kak
 export TERM=screen-256color
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8 &> /dev/null
