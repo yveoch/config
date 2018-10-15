@@ -155,6 +155,12 @@ godoc() {
 	$(which godoc) $@ | less -FRX
 }
 
+# SSH-AGENT
+if type keychain &>/dev/null
+then
+	eval `keychain -q --eval`
+fi
+
 # PLUGINS
 if [ -d ~/.config/bash ]; then
 	source ~/.config/bash/z/z.sh
