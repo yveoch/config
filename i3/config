@@ -263,6 +263,7 @@ gaps inner 25
 
 # start apps
 exec --no-startup-id compton
+exec --no-startup-id ~/.fehbg
 
 ## Base16 Ocean
 # Author: Chris Kempson (http://chriskempson.com)
