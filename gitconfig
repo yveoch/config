@@ -81,7 +81,7 @@
 	tool = vimdiff
 
 [core]
-	editor = vim
+	editor = kak
 	excludesfile = ~/.gitignore
 
 [color]
