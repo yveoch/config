@@ -78,9 +78,6 @@ define-command -docstring 'strip-tws: strip trailing whitespaces' \
         exec -draft %{ %s[^\S\n]+$<ret>d }
     }
 
-# Wrap at 80
-hook global WinCreate .* %{ autowrap-enable }
-
 # kakoune-cscope mappings
 map -docstring 'Cscope menu' global user 'c' '<a-i>w:cscope-menu<ret>'
 
