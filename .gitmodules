@@ -19,3 +19,6 @@
 [submodule "kak/autoload/edit-or-dir"]
 	path = kak/autoload/edit-or-dir
 	url = https://github.com/TeddyDD/kakoune-edit-or-dir
+[submodule "kak/autoload/fzf"]
+	path = kak/autoload/fzf
+	url = https://github.com/andreyorst/fzf.kak

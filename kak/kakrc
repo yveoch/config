@@ -89,3 +89,7 @@ evaluate-commands %sh{
 # edit-or-dir
 unalias global e edit
 alias global e edit-or-dir
+
+# fzf
+set-option global fzf_file_command 'ag'
+map global normal <c-f> ': fzf-mode<ret>'
