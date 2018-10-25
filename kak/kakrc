@@ -118,5 +118,6 @@ evaluate-commands %sh{
     echo map global view i "<esc>:lsp-hover<ret>" -docstring "\"display info\""
 }
 
-# Open directories directly
-ranger-open-on-edit-directory
+# edit-or-dir
+unalias global e edit
+alias global e edit-or-dir

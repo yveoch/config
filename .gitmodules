@@ -16,3 +16,6 @@
 [submodule "kak/autoload/cheat"]
 	path = kak/autoload/cheat
 	url = https://github.com/dryvenn/kakoune-cheat
+[submodule "kak/autoload/edit-or-dir"]
+	path = kak/autoload/edit-or-dir
+	url = https://github.com/TeddyDD/kakoune-edit-or-dir
