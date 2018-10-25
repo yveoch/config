@@ -36,38 +36,6 @@ define-command -docstring 'gitf <pattern>: git file finder' \
         edit %arg{1}
     }
 
-# FZF file finder
-define-command -docstring 'fzf: FZF file invocation' \
-    -params 0 \
-    fzf-file %{ evaluate-commands %sh{
-        if [ -z "$TMUX" ]; then
-            echo "echo -markup \"{Error}Only works inside tmux\""
-            exit
-        fi
-        f=$(find * -type f | fzf-tmux -d 20%)
-        if [ -n "$f" ]
-        then
-            printf 'edit %%{%s}\n' $f
-        fi
-    }}
-map global normal <c-f> ':fzf-file<ret>'
-
-# FZF buffer finder
-define-command -docstring 'fzf: FZF buffer invocation' \
-    -params 0 \
-    fzf-buffer %{ evaluate-commands %sh{
-        if [ -z "$TMUX" ]; then
-            echo "echo -markup \"{Error}Only works inside tmux\""
-            exit
-        fi
-        b=$(echo "$kak_buflist" | tr ' ' '\n' | tr -d "'" | fzf-tmux -d 20%)
-        if [ -n "$b" ]
-        then
-            printf 'buffer %s\n' $b
-        fi
-    }}
-map global normal <c-b> ':fzf-buffer<ret>'
-
 # Show trailing whitespaces
 addhl global/ dynregex "[^\S\n]+$" 0:black,red
 
