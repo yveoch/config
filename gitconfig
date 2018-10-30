@@ -66,9 +66,10 @@
 	ua = "submodule add"
 	ud = "submodule deinit"
 	ui = "submodule init"
-	uiu = "submodule update --init"
-	us = "submodule status"
-	uu = "submodule update"
+	uu = "submodule update --recursive"
+	uui = "submodule update --init --recursive"
+	us = "submodule status --recursive"
+	uy = "submodule sync --recursive"
 	w = "show"
 
 	ignore = "!f() { curl -L -s https://www.gitignore.io/api/$@; }; f"
