@@ -8,6 +8,7 @@ PROMPT_COMMAND=__prompt_command
 __prompt_command() {
 	local errcode=$?
 	local arrow=">\[\e[m\]"
+	local nope="\e[0m\[\e[m\]"
 	local git=""
 	if [ $errcode != 0 ]; then
 		arrow="\[\e[31m\]$arrow"
@@ -23,7 +24,9 @@ __prompt_command() {
 	GIT_PS1_SHOWCOLORHINTS=true
 	git=$(__git_ps1 "on \[\e[36m\]%s\[\e[m\]" 2> /dev/null)
 
-	PS1="\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git\n$arrow "
+	local local_prompt="$(__prompt_command_local 2>/dev/null)"
+
+	PS1="$nope\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git$local_prompt\n$arrow "
 }
 # Header
 [[ $- == *i* ]] && type fortune &> /dev/null && fortune
