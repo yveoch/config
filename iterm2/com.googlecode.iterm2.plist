@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AboutToPasteTabsWithCancel</key>
+	<true/>
+	<key>AboutToPasteTabsWithCancel_selection</key>
+	<integer>0</integer>
 	<key>AlternateMouseScroll</key>
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -100,7 +104,7 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>542 33 445 77 0 0 1920 1200 </string>
 	<key>NSWindow Frame ProfilesPanel</key>
-	<string>345 781 735 382 0 0 1920 1200 </string>
+	<string>345 782 735 382 0 0 1920 1177 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>650 606 620 392 0 0 1920 1200 </string>
 	<key>NSWindow Frame SessionsPreferences</key>
@@ -108,9 +112,9 @@
 	<key>NSWindow Frame SharedPreferences</key>
 	<string>809 531 796 486 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 603 650 477 0 0 1920 1200 </string>
+	<string>0 550 650 477 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>38 700 650 477 0 0 1920 1200 </string>
+	<string>530 362 650 477 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>757 191 650 477 0 0 1920 1200 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -934,7 +938,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-11-09T09:28:38Z</date>
+	<date>2018-12-10T11:55:07Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
