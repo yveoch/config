@@ -10,6 +10,9 @@ set-option -add global ui_options "ncurses_assistant=off"
 set-option -add global ui_options "ncurses_set_title=true"
 set-option -add global ui_options "ncurses_enable_mouse=false"
 
+# Auto-reload buffers
+set-option global autoreload yes
+
 # Search highlighting
 set global incsearch true
 
