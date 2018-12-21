@@ -1,5 +1,5 @@
 # Theme
-colorscheme zenburn
+colorscheme gruvbox
 addhl global/ show-matching
 addhl global/ number-lines -hlcursor
 addhl global/ wrap -word -marker "…"
