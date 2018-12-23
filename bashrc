@@ -65,7 +65,7 @@ export HISTIGNORE="ls:bg:fg:history"
 # Use standard ISO 8601 timestamp
 export HISTTIMEFORMAT="%F %T "
 # Avoid duplicate entries
-export HISTCONTROL="ignoredups:erasedups"
+export HISTCONTROL="ignoreboth"
 # Save multi-line commands as one command
 shopt -s cmdhist
 # Append to the history file when exiting
