@@ -92,6 +92,7 @@ alias global e edit-or-dir
 
 # fzf
 set-option global fzf_file_command 'ag'
-map global normal <c-f> ': fzf-mode<ret>'
+map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
+map global normal <c-f> ': fzf-mode<ret>f'
 
 alias global x write-quit
