@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=CapsEscape
+Exec=setxkbmap -option caps:escape
+Terminal=False
+Type=Application
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
