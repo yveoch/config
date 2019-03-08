@@ -24,9 +24,9 @@ __prompt_command() {
 	GIT_PS1_SHOWCOLORHINTS=true
 	git=$(__git_ps1 "on \[\e[36m\]%s\[\e[m\]" 2> /dev/null)
 
-	local local_prompt="$(__prompt_command_local 2>/dev/null)"
-
-	PS1="$nope\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git$local_prompt\n$arrow "
+	PS1=""
+	__prompt_command_local
+	PS1="$nope\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git$PS1\n$arrow "
 }
 # Header
 [[ $- == *i* ]] && type fortune &> /dev/null && fortune
