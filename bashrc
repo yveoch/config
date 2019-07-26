@@ -131,7 +131,7 @@ fi
 
 # KAKOUNE
 # Automatic session naming
-k() {
+kk() {
 	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
 	local project=$(basename $base_dir | tr -d '.')
 	if kak -l | grep -q $project; then
@@ -145,7 +145,7 @@ k() {
 alias tmuxa="tmux attach"
 alias tmuxd="tmux detach"
 # Attach if exists else create
-t() {
+tm() {
 	if ! tmux ls &> /dev/null
 	then
 		tmux $@
