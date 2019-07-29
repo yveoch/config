@@ -135,9 +135,9 @@ kk() {
 	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
 	local project=$(basename $base_dir | tr -d '.')
 	if kak -l | grep -q $project; then
-		kak -c $project "$@"
+		kak -c $project -e "cd $base_dir" "$@"
 	else
-		kak -s $project "$@"
+		kak -s $project -E "cd $base_dir" "$@"
 	fi
 }
 
