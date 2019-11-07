@@ -25,7 +25,7 @@ __prompt_command() {
 	git=$(__git_ps1 "on \[\e[36m\]%s\[\e[m\]" 2> /dev/null)
 
 	PS1=""
-	__prompt_command_local
+	type __prompt_command_local &> /dev/null && __prompt_command_local
 	PS1="$nope\[\e[34m\]\u\[\e[m\] at \[\e[35m\]\h\[\e[m\] in \[\e[33m\]\w\[\e[m\] $git$PS1\n$arrow "
 }
 # Header
