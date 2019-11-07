@@ -85,6 +85,7 @@ hook global InsertCompletionHide .* %{
 
 # Enable LSP if it is available
 evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
 map -docstring 'LSP menu' global user 'l' ': enter-user-mode lsp<ret>'
 
 # edit-or-dir
