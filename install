@@ -6,7 +6,7 @@ set -o nounset
 set -o pipefail
 #set -o xtrace
 
-cd $(dirname $(readlink -f $0))
+cd $(dirname $0)
 
 # Get latest changes from Git
 stash=$(git stash create -kua)
