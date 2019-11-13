@@ -1,3 +1,4 @@
 tags
 cscope.*
 .ignore
+.env
