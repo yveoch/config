@@ -111,8 +111,6 @@ alias dir="dir --color=auto"
 alias grep="grep --color=auto"
 alias ip="ip -c"
 alias yaourt="yaourt --noconfirm"
-alias e="$EDITOR"
-
 
 # FZF
 if source ~/.fzf.bash &> /dev/null; then
@@ -131,13 +129,21 @@ fi
 
 # KAKOUNE
 # Automatic session naming
-kk() {
-	local base_dir=$(git rev-parse --show-toplevel 2> /dev/null || pwd)
-	local project=$(basename $base_dir | tr -d '.')
-	if kak -l | grep -q $project; then
-		kak -c $project "$@"
+e() {
+	local cur_dir=$(basename $PWD | tr -d '.' | tr '_' '-')
+	local git_dir=$(basename $(git rev-parse --show-toplevel 2> /dev/null || pwd) | tr -d '.' | tr '_' '-')
+	kak -clear
+	if jobs %kak &> /dev/null
+	then
+		fg %kak
+	elif kak -l | grep -q $cur_dir
+	then
+		kak -c $cur_dir "$@"
+	elif kak -l | grep -q $git_dir
+	then
+		kak -c $git_dir "$@"
 	else
-		kak -s $project -E "cd $base_dir" "$@"
+		kak -s $cur_dir "$@"
 	fi
 }
 
