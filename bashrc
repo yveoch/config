@@ -165,6 +165,17 @@ godoc() {
 	$(which godoc) $@ | less -FRX
 }
 
+revise() {
+	local log
+	if git log --oneline | grep -q 'origin/master'
+	then
+		log="git log HEAD...origin/master"
+	else
+		log="git log -n 10"
+	fi
+	git revise $($log --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
+}
+
 # SSH-AGENT
 if type keychain &>/dev/null
 then
