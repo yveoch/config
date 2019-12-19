@@ -72,8 +72,8 @@
 	uy = "submodule sync --recursive"
 	w = "show"
 
-	ignore = "!f() { curl -L -s https://www.gitignore.io/api/$@; }; f"
 	rev = "revise"
+	ign = "!f() { curl -L -s https://www.gitignore.io/api/$@; }; f"
 	fastps1 = "!f() { git config bash.showDirtyState false; git config bash.showUntrackedFiles false; }; f"
 
 [log]
