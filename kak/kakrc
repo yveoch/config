@@ -73,6 +73,11 @@ hook global WinSetOption filetype=sh %{
     set-option window indentwidth 0
 }
 
+# Use 2 spaces to indent YAML
+hook global WinSetOption filetype=yaml %{
+    set-option window indentwidth 2
+}
+
 # Tab cycles through completions
 hook global InsertCompletionShow .* %{
     map window insert <tab> <c-n>
