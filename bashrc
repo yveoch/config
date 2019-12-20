@@ -103,7 +103,6 @@ export PYTHONSTARTUP=~/.pythonrc
 # ALIASES
 alias tcb="xclip -i -selection clipboard"
 alias l="ls -lah"
-alias path="readlink -f"
 alias rlwrap="rlwrap -c -i -m -r -R -s 50000"
 alias menuconfig="make MENUCONFIG_COLOR=blackbg menuconfig"
 alias ls="ls --color=auto"
