@@ -135,10 +135,10 @@ e() {
 	if jobs %kak &> /dev/null
 	then
 		fg %kak
-	elif kak -l | grep -q $cur_dir
+	elif kak -l | grep -q "^$cur_dir$"
 	then
 		kak -c $cur_dir "$@"
-	elif kak -l | grep -q $git_dir
+	elif kak -l | grep -q "^$git_dir$"
 	then
 		kak -c $git_dir "$@"
 	else
