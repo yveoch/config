@@ -102,4 +102,5 @@ set-option global fzf_file_command 'ag'
 map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
 map global normal <c-f> ': fzf-mode<ret>f'
 
+# Add write-quit
 alias global x write-quit
