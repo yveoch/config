@@ -61,7 +61,7 @@ map global insert <tab> '<a-;><gt>'
 map global insert <s-tab> '<a-;><lt>'
 
 # Fold selection
-map -docstring 'Fold selection at 80 columns' global user 'w' '|fold -s | sed "s/\s*$//"<ret>gh'
+map -docstring 'Fold paragraph at 80 columns' global user 'w' '<a-i>p<a-j> | fold -s | sed "s/\s*$//"<ret>gl'
 
 # Go is indented with tabs
 hook global WinSetOption filetype=go %{
