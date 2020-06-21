@@ -132,7 +132,7 @@ fi
 e() {
 	local cur_dir=$(basename $PWD | tr -d '.' | tr '_' '-')
 	local git_dir=$(basename $(git rev-parse --show-toplevel 2> /dev/null || pwd) | tr -d '.' | tr '_' '-')
-	kak -clear
+	kak -clear; kak -clear
 	if jobs %kak &> /dev/null
 	then
 		fg %kak
