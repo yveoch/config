@@ -111,6 +111,7 @@ alias grep="grep --color=auto"
 alias ip="ip -c"
 alias yaourt="yaourt --noconfirm"
 alias py="python3"
+alias k="kubectl"
 
 # FZF
 if source ~/.fzf.bash &> /dev/null; then
@@ -165,6 +166,7 @@ godoc() {
 	$(which godoc) $@ | less -FRX
 }
 
+# GIT
 revise() {
 	local log
 	if git log --oneline | grep -q 'origin/master'
@@ -175,6 +177,12 @@ revise() {
 	fi
 	git revise $($log --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
 }
+
+# KUBERNETES
+kwatch() {
+	watch -t -n 1 "kubectl config current-context; kubectl get ${@:-pods --all-namespaces | grep -v kube-system}"
+}
+
 
 # SSH-AGENT
 if type keychain &>/dev/null
