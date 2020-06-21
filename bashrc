@@ -154,9 +154,9 @@ alias tmuxd="tmux detach"
 tm() {
 	if ! tmux ls &> /dev/null
 	then
-		tmux $@
+		exec tmux $@
 	else
-		tmux attach -t ${1:-$(tmux ls | head -n 1 | cut -d ':' -f 1)}
+		exec tmux attach -t ${1:-$(tmux ls | head -n 1 | cut -d ':' -f 1)}
 	fi
 }
 
