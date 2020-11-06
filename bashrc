@@ -172,8 +172,8 @@ revise() {
 	if [ $# -ge 1 ]
 	then
 		# The commit is chosen by the user between HEAD and $1
-		local branch=$(git branch --remotes --list "$1")
-		commit=$(git log HEAD...$branch --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
+		#local branch=$(git branch --remotes --list "$1")
+		commit=$(git log HEAD...$1 --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
 	else
 		# The commit is the newest among those which last changed the lines in the index
 		local newest=""
