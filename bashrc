@@ -169,7 +169,10 @@ godoc() {
 # GIT
 revise() {
 	local log
-	if git log --oneline | grep -q 'origin/master'
+	if [ $# -ge 1 ]
+	then
+		log="git log HEAD...${1}"
+	elif git log --oneline | grep -q "origin/master"
 	then
 		log="git log HEAD...origin/master"
 	else
