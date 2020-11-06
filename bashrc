@@ -168,17 +168,33 @@ godoc() {
 
 # GIT
 revise() {
-	local log
+	local commit
 	if [ $# -ge 1 ]
 	then
-		log="git log HEAD...${1}"
-	elif git log --oneline | grep -q "origin/master"
-	then
-		log="git log HEAD...origin/master"
+		# The commit is chosen by the user between HEAD and $1
+		local branch=$(git branch --remotes --list "$1")
+		commit=$(git log HEAD...$branch --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
 	else
-		log="git log -n 10"
+		# The commit is the newest among those which last changed the lines in the index
+		local newest=""
+		for file in $(git diff --staged --name-only)
+		do
+			local lines=$(git diff -U0 --staged $file | grep -Eo -- '@@.*@@' | grep -Eo -- '-[[:digit:]]+,?[[:digit:]]*' | tr -d '-')
+			for line in $lines
+			do
+				local start=$(echo $line | cut -d ',' -f 1)
+				local offset=$([[ "$line" == *,* ]] && (echo $line | cut -d ',' -f 2) || echo 1)
+				local last=$(git log -n 1 --abbrev-commit -L $start,+$offset:$file | grep -Eo 'commit \w*' | cut -d ' ' -f 2)
+				local newest=$(git merge-base --is-ancestor "$last" "$newest" &> /dev/null && echo "$newest" || echo "$last")
+			done
+		done
+		[ ! "$newest" ] && echo "No staged changes" >&2 && exit 1
+		# Confirm before picking it
+		git show -q "$newest"
+		read -p "Press ENTER to revise..."
+		commit="$newest"
 	fi
-	git revise $($log --oneline --color=always | fzf --ansi --tac | cut -d ' ' -f 1)
+	git revise "$commit"
 }
 
 # KUBERNETES
