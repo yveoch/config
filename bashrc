@@ -110,8 +110,10 @@ alias dir="dir --color=auto"
 alias grep="grep --color=auto"
 alias ip="ip -c"
 alias yaourt="yaourt --noconfirm"
-alias py="python3"
 alias k="kubectl"
+alias py="python3"
+alias python="python3"
+alias pip="pip3"
 
 # FZF
 if source ~/.fzf.bash &> /dev/null; then
