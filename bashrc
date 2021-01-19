@@ -212,10 +212,24 @@ then
 fi
 
 # PLUGINS
-if [ -d ~/.config/bash ]; then
+if [ -d ~/.config/bash ]
+then
 	source ~/.config/bash/z/z.sh
 	source ~/.config/bash/fz/fz.sh
 	source ~/.config/bash/nt.sh
+fi
+
+# OSX
+if [ "$(uname)" = "Darwin" ]
+then
+	[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
+	export PATH="$(/bin/ls -d /usr/local/opt/*/libexec/gnubin | /usr/bin/paste -s -d ':' -):$PATH"
+	export MANPATH="$(/bin/ls -d /usr/local/opt/*/libexec/gnuman | /usr/bin/paste -s -d ':' -):$(manpath)"
+
+	export PATH="$(/bin/ls -d /usr/local/opt/python@*/bin | sort -r | /usr/bin/paste -s -d ':' -):$PATH"
+
+	alias coffee="caffeinate -disu"
 fi
 
 # LOCAL
