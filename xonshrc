@@ -1,96 +1,63 @@
-# Prompt
-$PROMPT_FIELDS['u'] = '{BLUE}' + $PROMPT_FIELDS['user'] + '{NO_COLOR}'
-$PROMPT_FIELDS['h'] = '{PURPLE}' + $PROMPT_FIELDS['hostname'] + '{NO_COLOR}'
-$PROMPT_FIELDS['c'] = lambda: '{YELLOW}' + $PROMPT_FIELDS['cwd']() + '{NO_COLOR}'
-$PROMPT_FIELDS['g'] = lambda: ' on ' + $PROMPT_FIELDS['gitstatus']() if $PROMPT_FIELDS['curr_branch']() else ''
-$PROMPT_FIELDS['p'] = lambda: ('{BOLD_INTENSE_GREEN}' if not __xonsh__.history.rtns or\
-                                __xonsh__.history.rtns[-1] == 0 else "{BOLD_INTENSE_RED}") +\
-                        $PROMPT_FIELDS['prompt_end'] + '{NO_COLOR}'
-$PROMPT = '{u} at {h} in {c}{g}\n{p} '
-
 # Exports
 $EDITOR = 'kak'
 $VISUAL = 'kak'
-$PATH += [
-            '~/.local/bin',
-            '/usr/local/sbin',
-            '/usr/local/bin',
-            '/usr/sbin',
-            '/usr/bin',
-            '/sbin',
-            '/bin',
-            '~/.scripts',
-         ]
-$TERM = 'screen-256color'
-$LANG = 'en_US.UTF-8'
-$LC_ALL = 'en_US.UTF-8'
-$PYTHONSTARTUP = '~/.pythonrc'
-
 
 # Aliases
-aliases['e'] = '$EDITOR'
 aliases['l'] = 'ls --lah'
-aliases['ls'] = 'ls --color=auto'
-aliases['ip'] = 'ip -c'
-aliases['grep'] = 'grep --color=auto'
-aliases['path'] = 'readlink -e'
-aliases['make'] = 'make -j' + $(nproc)
 
-# Kakoune
-def _k(args):
-    from pathlib import Path
-    base_dir = $(git rev-parse --show-toplevel err> /dev/null) or $(pwd)
-    project = Path(base_dir).stem.strip().replace('.', '')
-    for session in $(kak -l).strip().split('\n'):
-        if session == project:
-            opt = '-c'
-            break
+#$XONSH_TRACE_SUBPROC = True
+def _tmux(args):
+    if proc := !(tmux ls err>/dev/null):
+        tmux attach -t @($(tmux ls).split(":")[0])
     else:
-        opt = '-s'
-    @(['kak', opt, project, *args])
-aliases['k'] = _k
+        tmux @(args)
+aliases['tm'] = _tmux
 
-# Tmux
-def _t(args):
-    cmd = ['tmux']
-    try:
-        tmux_ls = $(tmux ls)
-    except XonshCalledProcessError:
-        tmux_ls = None
-    if tmux_ls:
-        if len(args) != 0:
-            name = args[0]
-            args = args[1:]
-        else:
-            name = tmux_ls.split('\n')[0].split(':')[0]
-        cmd += ['attach', '-t', name]
-    cmd += args
-    @(cmd)
-aliases['t'] = _t
+def _kak(args):
+    git_dir = Path($(git rev-parse --show-toplevel).strip()).name
+    cur_dir = Path($(pwd).strip()).name
+    if !(jobs | grep -q 'kak'):
+        fg @(re.search(r'\[(\d+)\].*kak', $(jobs)).group(1))
+    elif !(kak -l | grep -q @(f'^{git_dir}$')):
+        kak -c @(git_dir) @(args)
+    elif !(kak -l | grep -q @(f'^{cur_dir}$')):
+        kak -c @(cur_dir) @(args)
+    else:
+        kak -s @(cur_dir) @(args)
+aliases['e'] = _kak
 
-# Godoc
-def _godoc(args):
-    /usr/local/bin/godoc args
-aliases['godoc'] = _godoc
 
-#if type keychain &>/dev/null
-#then
-	#eval `keychain -q --eval`
-#fi
+# https://xon.sh/xontribs.html
+XONTRIBS = {
+    "apt_tabcomplete": "xonsh-apt-tabcomplete",
+    "argcomplete": "xontrib-argcomplete",
+    "autovox": None,
+    "back2dir": "xontrib-back2dir",
+    "broot": "xontrib-broot",
+    "cmd_done": "xontrib-cmd-durations",
+    "coreutils": None,
+    "docker_tabcomplete": "xonsh-docker-tabcomplete",
+    "fzf-widgets": "xontrib-fzf-widgets",
+    "hist_navigator": "xontrib-hist-navigator",
+    "output_search": "xontrib-output-search",
+    "pdb": None,
+    "pipeliner": "xontrib-pipeliner",
+    "prompt_ret_code": None,
+    "readable-traceback": "xontrib-readable-traceback",
+    "ssh_agent": "xontrib-ssh-agent",
+    "vox": None,
+    "whole_word_jumping": None,
+    "xog": None,
+    "z": "xontrib-z",
+}
 
-# Greeting
-type fortune &> /dev/null && fortune
+# Before loading xontribs
+$XONTRIB_OUTPUT_SEARCH_KEY='i'
+$fzf_history_binding = "c-r"
+$fzf_ssh_binding = "c-s"
+$fzf_file_binding = "c-t"
+#$fzf_dir_binding = "c-g"
 
-# Local
-execx($(cat ~/.xonshrc_local))
+xontrib load @(XONTRIBS.keys())
 
-# Xontribs
-xontrib load apt_tabcomplete
-xontrib load autoxsh
-xontrib load coreutils
-xontrib load docker_tabcomplete
-xontrib load fzf-widgets
-xontrib load vox
-xontrib load vox_tabcomplete
-xontrib load avox
-xontrib load z
+aliases["xontribs"] = "xpip install -U @(XONTRIBS.values()); xontrib load @(XONTRIBS.keys())"
