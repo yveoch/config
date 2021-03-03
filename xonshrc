@@ -91,5 +91,6 @@ $fzf_file_binding = "c-t"
 #$fzf_dir_binding = "c-g"
 
 xontrib load @(XONTRIBS.keys())
-
 aliases["xontribs"] = "xpip install -U @(XONTRIBS.values()); xontrib load @(XONTRIBS.keys())"
+
+execx($(cat ~/.xonshrc_local))
