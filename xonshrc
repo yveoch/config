@@ -1,11 +1,45 @@
 # Exports
-$EDITOR = 'kak'
-$VISUAL = 'kak'
+$EDITOR = "kak"
+$VISUAL = "kak"
+$PATH = [
+    "$HOME/.scripts",
+    "$HOME/.local/bin",
+    "/usr/games",
+    "/usr/local/sbin",
+    "/usr/local/bin",
+    "/usr/sbin",
+    "/usr/bin",
+    "/sbin",
+    "/bin",
+]
+$TERM = "screen-256color"
+$LANG = "en_US.UTF-8"
+$PYTHONSTARTUP = "~/.pythonrc"
+
+# OSX
+if $(uname).strip() == "Darwin":
+    # GNU
+    $PATH = $(/bin/ls -d /usr/local/opt/*/libexec/gnubin).splitlines() + $PATH
+    $MANPATH = $(/bin/ls -d /usr/local/opt/*/libexec/gnuman).splitlines() + $(manpath).strip().split(":")
+    # Python
+    $PATH = $(/bin/ls -d /usr/local/opt/python@*/bin).splitlines() + $PATH
+    aliases["coffee"] = "caffeinate -disu"
 
 # Aliases
-aliases['l'] = 'ls --lah'
+aliases["ls"] = "ls --color=auto"
+aliases["grep"] = "grep --color=auto"
+aliases["l"] = "ls -lah"
 
-#$XONSH_TRACE_SUBPROC = True
+# FZF
+if !(which fzf):
+    aliases["fzf"] = "fzf-tmux"
+    if !(which ag):
+        $FZF_DEFAULT_COMMAND = "ag -g ''"
+        $FZF_CTRL_T_COMMAND = $FZF_DEFAULT_COMMAND
+    if !(which tree):
+        $FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -200'"
+
+
 def _tmux(args):
     if proc := !(tmux ls err>/dev/null):
         tmux attach -t @($(tmux ls).split(":")[0])
@@ -50,8 +84,6 @@ XONTRIBS = {
     "xog": None,
     "z": "xontrib-z",
 }
-
-# Before loading xontribs
 $XONTRIB_OUTPUT_SEARCH_KEY='i'
 $fzf_history_binding = "c-r"
 $fzf_ssh_binding = "c-s"
