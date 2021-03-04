@@ -112,6 +112,7 @@ alias ip="ip -c"
 alias yaourt="yaourt --noconfirm"
 alias k="kubectl"
 alias py="python3"
+alias ipy="ipython3"
 alias python="python3"
 alias pip="pip3"
 
