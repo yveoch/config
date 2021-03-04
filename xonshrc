@@ -63,7 +63,7 @@ aliases['e'] = _kak
 # https://xon.sh/xontribs.html
 XONTRIBS = {
     "apt_tabcomplete": "xonsh-apt-tabcomplete",
-    "argcomplete": "xontrib-argcomplete",
+    #"argcomplete": "xontrib-argcomplete",
     "autovox": None,
     "back2dir": "xontrib-back2dir",
     "broot": "xontrib-broot",
