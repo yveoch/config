@@ -32,7 +32,6 @@ aliases["l"] = "ls -lah"
 
 # FZF
 if !(which fzf):
-    aliases["fzf"] = "fzf-tmux"
     if !(which ag):
         $FZF_DEFAULT_COMMAND = "ag -g ''"
         $FZF_CTRL_T_COMMAND = $FZF_DEFAULT_COMMAND
