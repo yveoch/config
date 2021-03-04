@@ -83,11 +83,23 @@ XONTRIBS = {
     "xog": None,
     "z": "xontrib-z",
 }
+
+# xontrib output_search
 $XONTRIB_OUTPUT_SEARCH_KEY='i'
+
+# xontrib fzf-widgets
 $fzf_history_binding = "c-r"
 $fzf_ssh_binding = "c-s"
 $fzf_file_binding = "c-t"
 #$fzf_dir_binding = "c-g"
+
+# xontrib autovox
+@events.autovox_policy
+def env_policy(path, **_):
+    for name in {"requirements.txt", "setup.py", "src/requirements.txt"}:
+        if path.joinpath(name).exists():
+            return path.name
+aliases["vox-new"] = lambda args: $[vox new -a @(args) @(pf"{$(pwd).strip()}".name)]
 
 xontrib load @(XONTRIBS.keys())
 aliases["xontribs"] = "xpip install -U @(XONTRIBS.values()); xontrib load @(XONTRIBS.keys())"
