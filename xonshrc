@@ -47,8 +47,8 @@ def _tmux(args):
 aliases['tm'] = _tmux
 
 def _kak(args):
-    git_dir = Path($(git rev-parse --show-toplevel).strip()).name
-    cur_dir = Path($(pwd).strip()).name
+    git_dir = Path($(git rev-parse --show-toplevel).strip()).name.replace(".", "")
+    cur_dir = Path($(pwd).strip()).name.replace(".", "")
     if !(jobs | grep -q 'kak'):
         fg @(re.search(r'\[(\d+)\].*kak', $(jobs)).group(1))
     elif !(kak -l | grep -q @(f'^{git_dir}$')):
