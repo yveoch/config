@@ -53,7 +53,7 @@ define-command -docstring 'strip-tws: strip trailing whitespaces' \
 map -docstring 'Cscope menu' global user 'c' '<a-i>w:cscope-menu<ret>'
 
 # Search with Ag
-set-option global grepcmd 'ag --vimgrep'
+set-option global grepcmd 'rg --vimgrep'
 map global normal <c-k> '<a-i>w:grep <c-r>.<ret>'
 
 # Indent when tab is pressed
@@ -99,7 +99,9 @@ alias global e edit-or-dir
 
 # fzf
 require-module fzf
-set-option global fzf_file_command 'ag'
+set-option global fzf_file_command 'fd'
+set-option global fzf_highlight_command 'bat'
+set-option global fzf_use_main_selection false
 map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
 map global normal <c-f> ': fzf-mode<ret>f'
 
