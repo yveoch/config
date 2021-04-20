@@ -61,7 +61,7 @@ map global insert <tab> '<a-;><gt>'
 map global insert <s-tab> '<a-;><lt>'
 
 # Fold selection
-map -docstring 'Fold paragraph at 80 columns' global user 'w' '<a-i>p<a-j> | fold -s | sed "s/\s*$//"<ret>gl'
+map -docstring 'Fold selection' global user 'w' '|fmt -w $kak_opt_autowrap_column<ret>'
 
 # Select all
 map -docstring 'Select all' global user 'a' '*%s<ret>'
