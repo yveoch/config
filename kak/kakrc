@@ -63,6 +63,9 @@ map global insert <s-tab> '<a-;><lt>'
 # Fold selection
 map -docstring 'Fold paragraph at 80 columns' global user 'w' '<a-i>p<a-j> | fold -s | sed "s/\s*$//"<ret>gl'
 
+# Select all
+map -docstring 'Select all' global user 'a' '*%s<ret>'
+
 # foo_bar → fooBar
 # foo-bar → fooBar
 # foo bar → fooBar
