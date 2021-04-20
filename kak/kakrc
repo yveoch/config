@@ -63,6 +63,27 @@ map global insert <s-tab> '<a-;><lt>'
 # Fold selection
 map -docstring 'Fold paragraph at 80 columns' global user 'w' '<a-i>p<a-j> | fold -s | sed "s/\s*$//"<ret>gl'
 
+# foo_bar → fooBar
+# foo-bar → fooBar
+# foo bar → fooBar
+define-command -docstring 'Convert to camelCase' camelcase %{
+  exec '`s[-_<space>]<ret>d~<a-i>w'
+}
+
+# fooBar → foo_bar
+# foo-bar → foo_bar
+# foo bar → foo_bar
+define-command -docstring 'Convert to snake_case' snakecase %{
+  exec '<a-:><a-;>s-|[a-z][A-Z]<ret>;a<space><esc>s[-\s]+<ret>c_<esc><a-i>w`'
+}
+
+# fooBar → foo-bar
+# foo_bar → foo-bar
+# foo bar → foo-bar
+define-command -docstring 'Convert to kebab-case' kebabcase %{
+  exec '<a-:><a-;>s_|[a-z][A-Z]<ret>;a<space><esc>s[_\s]+<ret>c-<esc><a-i>w`'
+}
+
 # Go is indented with tabs
 hook global WinSetOption filetype=go %{
     set-option window indentwidth 0
