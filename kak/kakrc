@@ -134,5 +134,8 @@ set-option global fzf_use_main_selection false
 map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
 map global normal <c-f> ': fzf-mode<ret>f'
 
+# kakboard
+map -docstring 'Toggle kakboard' global user 'c' ': kakboard-toggle<ret>'
+
 # Add write-quit
 alias global x write-quit
