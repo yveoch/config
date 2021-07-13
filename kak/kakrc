@@ -102,6 +102,11 @@ hook global WinSetOption filetype=yaml %{
     set-option window indentwidth 2
 }
 
+# Use 2 spaces to indent Markdown
+hook global WinSetOption filetype=markdown %{
+    set-option window indentwidth 2
+}
+
 # Tab cycles through completions
 hook global InsertCompletionShow .* %{
     map window insert <tab> <c-n>
