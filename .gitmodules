@@ -22,3 +22,6 @@
 [submodule "kak/autoload/fzf"]
 	path = kak/autoload/fzf
 	url = https://github.com/andreyorst/fzf.kak
+[submodule "kak/autoload/kakboard"]
+	path = kak/autoload/kakboard
+	url = https://github.com/lePerdu/kakboard
