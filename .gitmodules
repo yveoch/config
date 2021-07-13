@@ -25,3 +25,6 @@
 [submodule "kak/autoload/kakboard"]
 	path = kak/autoload/kakboard
 	url = https://github.com/lePerdu/kakboard
+[submodule "kak/autoload/kakoune-easymotion"]
+	path = kak/autoload/kakoune-easymotion
+	url = https://github.com/danr/kakoune-easymotion

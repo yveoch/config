@@ -137,5 +137,8 @@ map global normal <c-f> ': fzf-mode<ret>f'
 # kakboard
 map -docstring 'Toggle kakboard' global user 'c' ': kakboard-toggle<ret>'
 
+# easymotion
+map -docstring 'Easymotion menu' global user 'm' ': enter-user-mode easymotion<ret>'
+
 # Add write-quit
 alias global x write-quit
