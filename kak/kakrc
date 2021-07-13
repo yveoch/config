@@ -50,7 +50,7 @@ define-command -docstring 'strip-tws: strip trailing whitespaces' \
     }
 
 # kakoune-cscope mappings
-map -docstring 'Cscope menu' global user 'c' '<a-i>w:cscope-menu<ret>'
+#map -docstring 'Cscope menu' global user 'c' '<a-i>w:cscope-menu<ret>'
 
 # Search with Ag
 set-option global grepcmd 'rg --vimgrep'
