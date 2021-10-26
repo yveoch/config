@@ -128,9 +128,11 @@ alias global e edit-or-dir
 
 # fzf
 require-module fzf
-set-option global fzf_file_command 'fd'
-set-option global fzf_highlight_command 'bat'
 set-option global fzf_use_main_selection false
+hook global ModuleLoaded fzf-file %{
+    set-option global fzf_file_command 'fd'
+    set-option global fzf_highlight_command 'bat'
+}
 map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
 map global normal <c-f> ': fzf-mode<ret>f'
 
