@@ -7,8 +7,8 @@ SETUVAR Z_CMD:z
 SETUVAR Z_DATA:/Users/yves\x2elefloch/\x2elocal/share/z/data
 SETUVAR Z_DATA_DIR:/Users/yves\x2elefloch/\x2elocal/share/z
 SETUVAR Z_EXCLUDE:\x5e/Users/yves\x2elefloch\x24
-SETUVAR __fish_initialized:3100
-SETUVAR _fisher_PatrickF1_2F_fzf_2E_fish_files:/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_extract_var_info\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_preview_file\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_report_file_type\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_search_current_dir\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_search_git_log\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_search_git_status\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_search_history\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__fzf_search_shell_variables\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/conf\x2ed/fzf\x2efish
+SETUVAR __fish_initialized:3400
+SETUVAR _fisher_PatrickF1_2F_fzf_2E_fish_files:/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
 SETUVAR _fisher_franciscolourenco_2F_done_files:/Users/yves\x2elefloch/\x2econfig/fish/conf\x2ed/done\x2efish
 SETUVAR _fisher_jethrokuan_2F_z_files:/Users/yves\x2elefloch/\x2econfig/fish/functions/__z\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__z_add\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__z_clean\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/functions/__z_complete\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/conf\x2ed/z\x2efish
 SETUVAR _fisher_jorgebucaran_2F_gitio_2E_fish_files:/Users/yves\x2elefloch/\x2econfig/fish/functions/gitio\x2efish\x1e/Users/yves\x2elefloch/\x2econfig/fish/completions/gitio\x2efish
@@ -40,4 +40,6 @@ SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr
+SETUVAR fish_user_paths:/usr/local/opt/openssl\x403/bin
 SETUVAR fzf_fish_custom_keybindings:\x1d
