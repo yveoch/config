@@ -1,5 +1,5 @@
 # Theme
-colorscheme gruvbox
+colorscheme gruvbox-dark
 addhl global/ show-matching
 addhl global/ number-lines -hlcursor
 addhl global/ wrap -word -marker "…"
