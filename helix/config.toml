@@ -1,1 +1,5 @@
 theme = "gruvbox"
+
+[editor]
+idle-timeout = 100
+color-modes = true
