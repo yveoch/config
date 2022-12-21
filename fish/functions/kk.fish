@@ -1,4 +1,4 @@
-function e -d "Start a kakoune server or client"
+function kk -d "Start a kakoune server or client"
     set cur_dir (basename $PWD | tr -d '.' | tr '_' '-')
     set git_dir (basename (git rev-parse --show-toplevel 2> /dev/null; or pwd) | tr -d '.' | tr '_' '-')
     kak -clear; kak -clear

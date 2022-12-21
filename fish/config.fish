@@ -4,12 +4,13 @@ alias pip "pip3"
 alias py "python3"
 alias ipy "ipython3"
 alias python "python3"
-alias tm="tmux attach -t 0; or tmux"
+alias tm "tmux attach -t 0; or tmux"
 
 set PATH $HOME/.local/bin $PATH
 
-set -U EDITOR "kak"
-set -U VISUAL "kak"
+alias e "hx"
+set -U EDITOR "hx"
+set -U VISUAL "hx"
 
 set -x FZF_DEFAULT_COMMAND 'fd --type f'
 
