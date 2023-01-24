@@ -15,6 +15,8 @@ alias e "hx"
 set -U EDITOR "hx"
 set -U VISUAL "hx"
 
+set TERM screen-256color
+
 set -x FZF_DEFAULT_COMMAND 'fd --type f'
 
 set __fish_git_prompt_show_informative_status 1
