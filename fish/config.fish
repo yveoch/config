@@ -21,3 +21,4 @@ set -x FZF_DEFAULT_COMMAND 'fd --type f'
 
 set __fish_git_prompt_show_informative_status 1
 set __fish_git_prompt_showcolorhints 1
+fzf_configure_bindings --directory=\e\cf --git_log=\e\cg --git_status=\e\cs --history=\cr --processes= --variables=\cv
