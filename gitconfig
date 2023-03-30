@@ -101,3 +101,12 @@
 
 [include]
 	path = ~/.gitconfig_local
+
+[init]
+	defaultBranch = main
+
+[rebase]
+	autosquash = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
