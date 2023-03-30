@@ -11,7 +11,7 @@ set PATH $HOME/.local/bin $PATH
 set -x GOPATH $HOME/.local/go
 set PATH $PATH $HOME/.local/go/bin
 
-alias e "hx"
+alias e "kk"
 set -U EDITOR "hx"
 set -U VISUAL "hx"
 
