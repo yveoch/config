@@ -37,6 +37,7 @@
 	hw = "stash show"
 	i = "switch"
 	ic = "switch --create"
+	iC = "switch --force-create"
 	id = "switch --detach"
 	ig = "switch --guess"
 	k = "cherry-pick"
