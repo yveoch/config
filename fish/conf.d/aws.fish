@@ -16,3 +16,5 @@ function awslogs
 end
 complete --command awslogs --exclusive --condition __fish_use_subcommand --arguments 'cache refresh open watch get groups streams'
 complete --command awslogs --exclusive --condition '__fish_seen_subcommand_from open watch get' --arguments '(cat (awslogs cache) | fzf)'
+
+alias hotswap='aws configure list | grep -q prod || cdk deploy --hotswap-fallback'
