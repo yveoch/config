@@ -97,6 +97,12 @@ hook global WinSetOption filetype=sh %{
     set-option window indentwidth 0
 }
 
+# Use 4 spaces to indent typescript
+hook global WinSetOption filetype=typescript %{
+    set-option window tabstop 4
+    set-option window indentwidth 4
+}
+
 # Use 2 spaces to indent YAML
 hook global WinSetOption filetype=yaml %{
     set-option window indentwidth 2
