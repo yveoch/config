@@ -112,3 +112,7 @@
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+
+[user]
+	email = 6233736+yveoch@users.noreply.github.com
+	name = Yves Lefloch
