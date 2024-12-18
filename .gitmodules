@@ -7,21 +7,12 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "kak/autoload/cscope"]
-	path = kak/autoload/cscope
-	url = https://github.com/dryvenn/kakoune-cscope
-[submodule "kak/autoload/cheat"]
-	path = kak/autoload/cheat
-	url = https://github.com/dryvenn/kakoune-cheat
-[submodule "kak/autoload/edit-or-dir"]
-	path = kak/autoload/edit-or-dir
-	url = https://github.com/TeddyDD/kakoune-edit-or-dir
 [submodule "kak/autoload/fzf"]
 	path = kak/autoload/fzf
 	url = https://github.com/andreyorst/fzf.kak
 [submodule "kak/autoload/kakboard"]
 	path = kak/autoload/kakboard
 	url = https://github.com/lePerdu/kakboard
-[submodule "kak/autoload/kakoune-easymotion"]
-	path = kak/autoload/kakoune-easymotion
-	url = https://github.com/danr/kakoune-easymotion
+[submodule "kak/tree-sitter-themes"]
+	path = kak/tree-sitter-themes
+	url = https://git.sr.ht/~hadronized/kakoune-tree-sitter-themes
