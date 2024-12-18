@@ -15,3 +15,5 @@ for target in $targets
 do
     ln -s -v $DIR/$target .$target
 done
+
+ln -s -v $(dirname $(dirname $(readlink -f $(which kak))))/share/kak/rc ~/.config/kak/autoload/

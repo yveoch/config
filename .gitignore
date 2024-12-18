@@ -2,3 +2,4 @@ vim/plugged
 fzf
 tmux/*
 !tmux/plugins/tpm
+kak/autoload/rc

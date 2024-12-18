@@ -1,14 +1,8 @@
-# Theme
-colorscheme gruvbox-dark
-addhl global/ show-matching
-addhl global/ number-lines -hlcursor
-addhl global/ wrap -word -marker "…"
-addhl global/ show-whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
-
 # UI
-set-option -add global ui_options "ncurses_assistant=off"
-set-option -add global ui_options "ncurses_set_title=true"
-set-option -add global ui_options "ncurses_enable_mouse=false"
+set-option -add global ui_options terminal_assistant=none
+set-option -add global ui_options terminal_set_title=true
+set-option -add global ui_options terminal_enable_mouse=false
+#set-option global ui_options terminal_status_on_top=true
 
 # Auto-reload buffers
 set-option global autoreload yes
@@ -16,55 +10,48 @@ set-option global autoreload yes
 # Search highlighting
 set global incsearch true
 
+# Edit this config
+map global user . ': edit -existing ~/.config/kak/kakrc<ret>' -docstring "edit config"
+map global user c ': comment-line<ret>' -docstring "toggle comment"
+
 # Case-insensitive search
-map -docstring 'Case-insensitive search' global user '/' /(?i)
-map -docstring 'Case-insensitive reverse search' global user '<a-/>' <a-/>(?i)
-map -docstring 'Case-insensitive search (extend)' global user '?' ?(?i)
-map -docstring 'Case-insensitive reverse search (extend)' global user '<a-?>' <a-?>(?i)
+map global normal '/' '/(?i)'
+map global normal '<a-/>' '<a-/>(?i)'
+map global normal '?' '?(?i)'
+map global normal '<a-?>' '<a-?>(?i)'
+#declare-user-mode isearch
+#map -docstring 'search' global isearch '/' /(?i)
+#map -docstring 'reverse search' global isearch '<a-/>' <a-/>(?i)
+#map -docstring 'search (extend)' global isearch '?' ?(?i)
+#map -docstring 'reverse search (extend)' global isearch '<a-?>' <a-?>(?i)
+#map global user i %{: enter-user-mode isearch<ret>} -docstring "case-insensitive search"
+
 
 # Simple file finder
 define-command -docstring 'find <file>: find a file' \
     -params 1 \
-    -shell-script-candidates %{ find * -type f } \
+    -shell-script-candidates %{ rg --files } \
     find %{
         edit %arg{1}
     }
 alias global f find
 
-# Git file finder
-define-command -docstring 'gitf <pattern>: git file finder' \
-    -params 1 \
-    -shell-script-candidates %{ git ls-files } \
-    gitf %{
-        edit %arg{1}
-    }
 
-# Show trailing whitespaces
-addhl global/ dynregex "[^\S\n]+$" 0:black,red
-
-# Strip trailing whitespaces
-define-command -docstring 'strip-tws: strip trailing whitespaces' \
-    -params 0 \
-    strip-tws %{
-        exec -draft %{ %s[^\S\n]+$<ret>d }
-    }
-
-# kakoune-cscope mappings
-#map -docstring 'Cscope menu' global user 'c' '<a-i>w:cscope-menu<ret>'
-
-# Search with Ag
-set-option global grepcmd 'rg --vimgrep'
-map global normal <c-k> '<a-i>w:grep <c-r>.<ret>'
+# Search with ripgrep
+set-option global grepcmd 'rg --column --smart-case --sort path'
+map -docstring 'Grep selection' global user 'g' ': grep <c-r>.<ret>'
 
 # Indent when tab is pressed
-map global insert <tab> '<a-;><gt>'
-map global insert <s-tab> '<a-;><lt>'
+hook global WinCreate .* %{
+    map window insert <tab> '<a-;><gt>'
+    map window insert <s-tab> '<a-;><lt>'
+}
 
 # Fold selection
-map -docstring 'Fold selection' global user 'w' '|fmt -w $kak_opt_autowrap_column<ret>'
+map -docstring 'Wrap selection' global user 'w' '|prose -c -w $kak_opt_autowrap_column<ret>'
 
-# Select all
-map -docstring 'Select all' global user 'a' '*%s<ret>'
+# Repeat selection
+map -docstring 'Repeat selection' global user 'r' '*%s<ret>'
 
 # foo_bar → fooBar
 # foo-bar → fooBar
@@ -114,40 +101,39 @@ hook global WinSetOption filetype=markdown %{
 }
 
 # Tab cycles through completions
-hook global InsertCompletionShow .* %{
-    map window insert <tab> <c-n>
-    map window insert <s-tab> <c-p>
-}
-hook global InsertCompletionHide .* %{
-    unmap window insert <tab> <c-n>
-    unmap window insert <s-tab> <c-p>
-}
+#hook global InsertCompletionShow .* %{
+#    map window insert <tab> <c-n>
+#    map window insert <s-tab> <c-p>
+#}
+#hook global InsertCompletionHide .* %{
+#    unmap window insert <tab> <c-n>
+#    unmap window insert <s-tab> <c-p>
+##}
 
 # Enable LSP if it is available
 evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
 lsp-enable
-map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global user l %{: enter-user-mode lsp<ret>} -docstring "LSP mode"
 map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
-map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
-map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
-map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
-map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
-map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
-map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
-set global lsp_hover_anchor true
+#map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+#map global insert <c-e> '<a-;>:lsp-snippets-select-next-placeholders<ret>' -docstring 'Select next snippet placeholder'
+map global object o '<a-;>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object e '<a-;>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+map global object k '<a-;>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+map global object d '<a-;>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+map global object D '<a-;>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+#set global lsp_hover_anchor true
 set global lsp_auto_show_code_actions true
-set global lsp_hover_max_lines 40
-lsp-auto-hover-enable
-lsp-auto-hover-insert-mode-enable
-hook global WinSetOption filetype=go %{
-        hook window BufWritePre .* lsp-formatting-sync
-}
+set global lsp_auto_highlight_references true
+#lsp-auto-hover-enable
+#lsp-auto-hover-insert-mode-enable
+#lsp-inlay-hints-enable global
+lsp-inlay-diagnostics-enable global # can be buggy
+#hook global WinSetOption filetype=go %{
+#        hook window BufWritePre .* lsp-formatting-sync
+#}
 
-# edit-or-dir
-unalias global e edit
-alias global e edit-or-dir
-
-# fzf
+# FZF
 require-module fzf
 set-option global fzf_use_main_selection false
 hook global ModuleLoaded fzf-file %{
@@ -157,14 +143,28 @@ hook global ModuleLoaded fzf-file %{
 hook global ModuleLoaded fzf-grep %{
     set-option global fzf_grep_command 'rg'
 }
-map -docstring 'FZF menu' global user 'f' ': fzf-mode<ret>'
+hook global ModuleLoaded fzf %{
+    set-option global fzf_implementation '/opt/homebrew/bin/fzf'
+    # HACK: set this opt, and without a '%' sign,
+    # so that tmux-split-window '-p' flag isn't used by kak-fzf,
+    # as the flag isn't supported by tmux anymore.
+    #set-option global fzf_preview_tmux_height '20'
+    # It also works to use the popup mode
+    set-option global fzf_tmux_popup true
+    set-option global fzf_tmux_popup_width '90%'
+    set-option global fzf_preview_tmux_height '90%'
+}
+map -docstring 'FZF mode' global user 'f' ': enter-user-mode fzf<ret>'
 map global normal <c-f> ': fzf-mode<ret>f'
 
-# kakboard
-map -docstring 'Toggle kakboard' global user 'c' ': kakboard-toggle<ret>'
+# Tree-sitter
+eval %sh{ kak-tree-sitter -dks --init $kak_session }
+map global user t %{: enter-user-mode tree-sitter<ret>} -docstring "TS mode"
 
-# easymotion
-map -docstring 'Easymotion menu' global user 'm' ': enter-user-mode easymotion<ret>'
-
-# Add write-quit
-alias global x write-quit
+# Theming (must be last)
+colorscheme catppuccin_macchiato
+add-highlighter global/ show-matching
+add-highlighter global/ number-lines -hlcursor
+add-highlighter global/ wrap -word -marker "…"
+add-highlighter global/ show-whitespaces -tab "»" -tabpad " " -lf " " -spc " " -nbsp "·"
+add-highlighter global/ dynregex "[^\S\n]+$" 0:black,red # trailing whitespaces
