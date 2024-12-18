@@ -24,9 +24,6 @@ do
 	ln -svnf $l ~/.$(basename $l)
 done
 
-echo "Installing vim plugins..."
-vim +PlugInstall +PlugUgrade +PlugUpdate +qall &> /dev/null
-
 echo "Installing tmux plugins..."
 ~/.tmux/plugins/tpm/bin/install_plugins &> /dev/null
 ~/.tmux/plugins/tpm/bin/update_plugins all &> /dev/null
