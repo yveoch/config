@@ -1,36 +1,17 @@
 #!/usr/bin/env bash
 
-set -o errexit
-set -o errtrace
-set -o nounset
-set -o pipefail
-#set -o xtrace
+DIR=$(dirname $(readlink -f $0))
 
-cd $(dirname $0)
+targets="
+tmux.conf
+tmux
+gitconfig
+gitconfig_local
+pythonrc
+"
 
-# Get latest changes from Git
-stash=$(git stash create -kua)
-git reset --hard
-git pull --rebase origin master
-git submodule update --init
-if [ -n "$stash" ]
-then
-	git stash apply $stash
-fi
-
-# Link dotfiles
-for l in $(find $PWD/.homepoline -mindepth 1)
+cd ~
+for target in $targets
 do
-	ln -svnf $l ~/.$(basename $l)
+    ln -s -v $DIR/$target .$target
 done
-
-echo "Installing tmux plugins..."
-~/.tmux/plugins/tpm/bin/install_plugins &> /dev/null
-~/.tmux/plugins/tpm/bin/update_plugins all &> /dev/null
-
-echo "Compiling kakoune..."
-make -j $(nproc) -C kak/kakoune/src &> /dev/null
-mkdir -p ~/.local/bin
-ln -snf $PWD/kak/kakoune/src/kak ~/.local/bin/kak
-
-echo "Done."
