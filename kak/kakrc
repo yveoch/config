@@ -100,6 +100,11 @@ hook global WinSetOption filetype=markdown %{
     set-option window indentwidth 2
 }
 
+# Highlight jsonnet like javascript
+hook global BufCreate .*\.jsonnet %{
+    set buffer filetype javascript
+}
+
 # Tab cycles through completions
 #hook global InsertCompletionShow .* %{
 #    map window insert <tab> <c-n>
